@@ -12,9 +12,9 @@ html(lang="vi")
         block css
     body.page
         .wrapper
-            include _navbar
-            include _header
+            include ../module/_navbar
+            include ../module/_header
             block content
-            include _footer
+            include ../module/_footer
         script(src= $dir + "js/main.min.js")
         block js
