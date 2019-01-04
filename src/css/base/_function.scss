@@ -1,0 +1,12 @@
+@function pw($pw,$w:12) {
+  @return ($pw/$w)*100%;
+}
+@function vwTB($w,$pc: $width-pc) {
+  @return ($w/$pc)*100vw;
+}
+@function vwSP($w,$sp: $width-sp) {
+  @return ($w/$sp)*100vw;
+}
+@function pCal($w) {
+  @return 100vw - vwSP($w) - vwSP(30);
+}

@@ -1,0 +1,70 @@
+.navbar {
+  background: $gray;
+  position: fixed;
+  width: 100%;
+  .navbar-nav {
+    display: flex;
+    z-index: 1000;
+    position: relative;
+    .nav-item {
+      flex: auto;
+      font-size: 16px;
+      text-align: center;
+      position: relative;
+      &.active {
+        background: $dark;
+      }
+      a {
+        color: $light;
+        display: block;
+        padding: 11px 0;
+      }
+    }
+  }
+  .sub-nav {
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    background: $white;
+    z-index: 1000;
+    top: -500px;
+    box-shadow: 0 2px 4px 0 hsla(300,1%,58%,.6);
+    transition: top 0.4s cubic-bezier(.17,.04,.03,.94);
+    &.show {
+      top: 39px;
+    }
+    .nav-item {
+      text-align: center;
+      flex: 0 0 33.333333%;
+      max-width: 33.333333%;
+      a {
+        text-decoration: none;
+        color: $gray;
+        line-height: 1.8;
+        display: block;
+        padding: 15px 0;
+        border: 1px solid $light;
+        span {
+          display: block;
+          text-transform: uppercase;
+          font-size: 12px;
+        }
+      }
+    }
+    form {
+      flex: 0 0 100%;
+      input {
+        width: 100%;
+        border: none;
+        padding: 10px 15px;
+        &::placeholder {
+          color: $gray;
+          font-style: italic;
+        }
+      }
+    }
+
+  }
+
+}

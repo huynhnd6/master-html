@@ -1,0 +1,20 @@
+-var title = 'Site Name'
+block vars
+
+doctype html
+html(lang="vi")
+    head
+        meta(charset="utf-8")
+        meta(name="viewport", content="width=device-width")
+        title #{title}
+        link(rel="stylesheet",href= $dir + 'css/main.min.css')
+
+        block css
+    body.page
+        .wrapper
+            include _navbar
+            include _header
+            block content
+            include _footer
+        script(src= $dir + "js/main.min.js")
+        block js

@@ -1,0 +1,13 @@
+extends inc/_layout
+block vars
+    -var $dir = './../'
+    -var title = 'Home'
+    -var pageid = '1'
+block content
+    .content.container.admin
+        h1.title Đăng tin sản phẩm
+        form.form-container
+            .form-item
+                label Tên sản phẩm:
+                input(type="text", name="name", placeholder="Nhập tên sản phẩm")
+                label

@@ -1,0 +1,25 @@
+.overlay {
+  background: $dark;
+  opacity: .6;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 999;
+  display: none;
+}
+.container {
+  padding: 0 15px;
+}
+.title {
+  text-transform: uppercase;
+  font-weight: lighter;
+  margin: 15px 0;
+}
+h2 {
+  @extend .title;
+  font-size: 16px;
+  padding: 0 5px;
+  border-left: 2px solid;
+}

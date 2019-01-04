@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Home</title>
+    <link rel="stylesheet" href="./../css/main.min.css">
+  </head>
+  <body class="page">
+    <div class="wrapper">
+      <nav class="navbar">
+        <ul class="navbar-nav">
+          <li class="nav-item active"><a href="#"><i class="fa fa-home"></i></a></li>
+          <li class="nav-item"><a class="btn-sub" href="#search-menu"><i class="fa fa-search"></i></a></li>
+          <li class="nav-item"><a href="#"><i class="fa fa-user-plus"></i></a></li>
+          <li class="nav-item"><a href="#"><i class="fa fa-sign-in-alt"></i></a></li>
+          <li class="nav-item"><a class="btn-sub" href="#subnav"><i class="fa fa-ellipsis-h"></i></a></li>
+        </ul>
+        <ul class="sub-nav" id="subnav">
+          <li class="nav-item"><a href="#"><i class="fa fa-fire"></i><span>Truyện hot</span></a></li>
+          <li class="nav-item"><a href="#"><i class="fa fa-fire"></i><span>Truyện hot</span></a></li>
+          <li class="nav-item"><a href="#"><i class="fa fa-fire"></i><span>Truyện hot</span></a></li>
+          <li class="nav-item"><a href="#"><i class="fa fa-fire"></i><span>Truyện hot</span></a></li>
+          <li class="nav-item"><a href="#"><i class="fa fa-fire"></i><span>Truyện hot</span></a></li>
+          <li class="nav-item"><a href="#"><i class="fa fa-fire"></i><span>Truyện hot</span></a></li>
+          <li class="nav-item"><a href="#"><i class="fa fa-fire"></i><span>Truyện hot</span></a></li>
+          <li class="nav-item"><a href="#"><i class="fa fa-fire"></i><span>Truyện hot</span></a></li>
+          <li class="nav-item"><a href="#"><i class="fa fa-fire"></i><span>Truyện hot</span></a></li>
+        </ul>
+        <div class="sub-nav" id="search-menu">
+          <form method="post">
+            <input name="search" required="" placeholder="Nhập từ khóa...">
+          </form>
+        </div>
+        <div class="overlay"></div>
+      </nav>
+      <header><img src="https://picsum.photos/400/200" width="100%"></header>
+      <div class="content container">
+        <div class="register">
+          <div class="title">
+            <h1>Tạo tài khoản</h1>
+            <div class="sub-title">Bạn đã là thành viên?<a href="#login"> đăng nhập</a> tại đây.</div>
+          </div>
+          <div class="alert alert-error"></div>
+          <form class="clear">
+            <div class="col-6">
+              <div class="form-group">
+                <label for="phone">Số điện thoại*</label>
+                <input type="text" placeholder="Nhập số điện thoại của bạn" id="phone">
+              </div>
+              <div class="form-group">
+                <label for="pass">Mật khẩu*</label>
+                <input type="password" placeholder="Tối thiểu 6 kí tự" id="pass">
+              </div>
+              <div class="form-group flex">
+                <div class="birthday">
+                  <label>Ngày sinh</label>
+                  <div class="flex">
+                    <div class="birthday-item" id="day"><span>Ngày</span>
+                      <div class="birthday-child"></div>
+                    </div>
+                    <div class="birthday-item" id="month"><span>Tháng</span>
+                      <div class="birthday-child"></div>
+                    </div>
+                    <div class="birthday-item" id="year"><span>Năm</span>
+                      <div class="birthday-child"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="gender">
+                  <label>Giới tính</label>
+                  <div class="gender-item"><span id="gender">Chọn</span>
+                    <div class="gender-child">
+                      <p>Nam</p>
+                      <p>Nữ</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6" style="padding-left:15px">
+              <div class="form-group">
+                <label for="name">Tên*</label>
+                <input type="text" placeholder="Nhập tên của bạn" id="name">
+              </div>
+              <div class="form-group">
+                <label for="email">Địa chỉ email*</label>
+                <input type="email" placeholder="Vui lòng nhập địa chỉ email của bạn" id="email">
+              </div>
+              <div class="form-group">
+                <label>Tôi đồng ý với<a href="/chinh-sach"> Chính sách</a> bảo mật.</label>
+                <input type="submit" value="Đăng kí">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="./../js/main.min.js"></script>
+    <script>
+      $(window).on('load', function () {
+          if (getCookie('login')) {
+              var login = getCookie('login').split(',');
+              var docUser = db.collection('users').doc(login[0]);
+              docUser.get().then(function (doc) {
+                  if (doc.exists) {
+                      if (login[1] == doc.data().pass) {
+                          window.location.href = '/';
+                      }
+                  }
+              });
+          }
+      });
+      function pushDate(id,max,text,min) {
+          if(min){
+              var year = new Date().getFullYear();
+              for (var i = year; i >= year - min; i--) {
+                  var month = "";
+                  month += "    <p>" + text + i + "<\/p>";
+                  $(id).find('.birthday-child').append(month);
+      
+              }
+          } else {
+              for (var i = 1; i <= max; i++) {
+                  var month = "";
+                  month += "    <p>" + text + i + "<\/p>";
+                  $(id).find('.birthday-child').append(month);
+      
+              }
+          }
+      
+      }
+      pushDate('#month',12, 'Tháng ');
+      pushDate('#day',31, '');
+      pushDate('#year',0,'',99);
+      
+      function selector(container, item) {
+          $(document).on('click', function () {
+              $('.gender-child,.birthday-child').slideUp(400);
+          });
+          $(container).click(function (event) {
+              event.stopPropagation();
+              $(this).find(item).slideToggle(400, function () {
+                  $(this).find('p').click(function () {
+                      $(this).parent().parent().find('span').text($(this).text());
+                  });
+              });
+          });
+      }
+      selector('.gender-item', '.gender-child');
+      selector('.birthday-item', '.birthday-child');
+      $('#phone, #pass, #name, #email').click(function () {
+          if ($(this).val() == '') {
+              $(this).css('border-color', '#fb816a');
+          } else {
+              $(this).css('border-color', '#fff');
+          }
+          $(this).change(function () {
+              if ($(this).val() == '') {
+                  $(this).css('border-color', '#fb816a');
+              } else {
+                  $(this).css('border-color', '#fff');
+              }
+          });
+      });
+    </script>
+  </body>
+</html>
